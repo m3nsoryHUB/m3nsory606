@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыкальный плеер с эквалайзером</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="player">
+        <header class="player__header">
+            <h1>Музыкальный плеер</h1>
+            <label class="file-input">
+                <input type="file" id="fileInput" accept="audio/*" multiple>
+                <span>Добавить треки</span>
+            </label>
+        </header>
+
+        <section class="now-playing">
+            <div class="track-info">
+                <div class="track-title" id="trackTitle">Трек не выбран</div>
+                <div class="track-artist" id="trackArtist">—</div>
+            </div>
+
+            <canvas id="visualizer" width="600" height="120"></canvas>
+
+            <div class="progress">
+                <span class="time" id="currentTime">0:00</span>
+                <input type="range" id="seekBar" min="0" max="100" value="0" step="0.1">
+                <span class="time" id="duration">0:00</span>
+            </div>
+
+            <div class="controls">
+                <button id="prevBtn" title="Предыдущий" aria-label="Предыдущий">⏮</button>
+                <button id="playBtn" title="Воспроизвести" aria-label="Воспроизвести" class="play">▶</button>
+                <button id="nextBtn" title="Следующий" aria-label="Следующий">⏭</button>
+                <div class="volume">
+                    <span aria-hidden="true">🔊</span>
+                    <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="0.8">
+                </div>
+            </div>
+        </section>
+
+        <section class="equalizer">
+            <div class="equalizer__header">
+                <h2>Эквалайзер</h2>
+                <div class="equalizer__actions">
+                    <select id="presetSelect">
+                        <option value="flat">Плоский</option>
+                        <option value="rock">Рок</option>
+                        <option value="pop">Поп</option>
+                        <option value="jazz">Джаз</option>
+                        <option value="classical">Классика</option>
+                        <option value="electronic">Электроника</option>
+                        <option value="bass">Бас-буст</option>
+                        <option value="vocal">Вокал</option>
+                    </select>
+                    <button id="resetEq" type="button">Сброс</button>
+                </div>
+            </div>
+            <div class="bands" id="bands"></div>
+        </section>
+
+        <section class="playlist">
+            <h2>Плейлист</h2>
+            <ul id="playlist"></ul>
+        </section>
+    </div>
+
+    <script src="player.js"></script>
+</body>
+</html>
